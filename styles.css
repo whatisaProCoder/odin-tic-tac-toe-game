@@ -1,0 +1,563 @@
+:root {
+    --primary-color: #ffffff;
+    --primary-color-lighter: #f5f7fa;
+    --primary-color-darker: #e3e6eb;
+    --background-color: #f0f4f8;
+    --accent-color: #6c63ff;
+    --border-color: #e0e6ed;
+    --main-text-color: #232946;
+    --main-text-hover-color: #6c63ff;
+    --accent-text-color: #595959;
+    --white: #ffffff;
+    --alert-color: #ff5252;
+    --success-color: #22c55e;
+    --draw-color: #ff9800;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #181a20;
+        --primary-color-lighter: #23262f;
+        --primary-color-darker: #101217;
+        --background-color: #13151a;
+        --accent-color: #8b7cff;
+        --border-color: #23262f;
+        --main-text-color: #f3f6fa;
+        --main-text-hover-color: #8b7cff;
+        --accent-text-color: #b0b3c6;
+        --alert-color: #ff6f6f;
+        --success-color: #4ade80;
+        --draw-color: #ffb74d;
+    }
+}
+
+[data-theme="light"] {
+    --primary-color: #ffffff;
+    --primary-color-lighter: #f5f7fa;
+    --primary-color-darker: #e3e6eb;
+    --background-color: #f0f4f8;
+    --accent-color: #6c63ff;
+    --border-color: #e0e6ed;
+    --main-text-color: #232946;
+    --main-text-hover-color: #6c63ff;
+    --accent-text-color: #595959;
+    --alert-color: #ff5252;
+    --success-color: #22c55e;
+    --draw-color: #ff9800;
+}
+
+[data-theme="dark"] {
+    --primary-color: #181a20;
+    --primary-color-lighter: #23262f;
+    --primary-color-darker: #101217;
+    --background-color: #13151a;
+    --accent-color: #8b7cff;
+    --border-color: #23262f;
+    --main-text-color: #f3f6fa;
+    --main-text-hover-color: #8b7cff;
+    --accent-text-color: #b0b3c6;
+    --alert-color: #ff6f6f;
+    --success-color: #4ade80;
+    --draw-color: #ffb74d;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--main-text-color);
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+
+.header {
+    background-color: var(--primary-color);
+    border: 0 solid var(--border-color);
+    border-bottom-width: 2px;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    color: var(--main-text-color);
+    user-select: none;
+}
+
+.header>.title {
+    flex: 1;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 550;
+}
+
+.header>.settings {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    padding: 0.2rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.header>.settings>.icon {
+    fill: var(--main-text-color);
+    height: 1.8rem;
+}
+
+.header>.settings:hover {
+    background-color: var(--primary-color-lighter);
+    border-color: var(--border-color);
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.profile-section>.profile-picture {
+    height: 2.45rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    transition: border-color 0.3s ease;
+}
+
+.profile-section>.profile-picture:hover {
+    border-color: var(--border-color);
+}
+
+dialog {
+    animation: fade-out 0.3s ease-out;
+}
+
+dialog:open {
+    animation: fade-in 0.3s ease-out;
+}
+
+dialog:open::backdrop {
+    animation: backdrop-fade-in 0.2s ease-out forwards;
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        display: block;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        display: none;
+    }
+
+    100% {
+        opacity: 1;
+        display: block;
+    }
+}
+
+@keyframes backdrop-fade-in {
+    0% {
+        background-color: rgba(0, 0, 0, 0%);
+        backdrop-filter: blur(0px);
+    }
+
+    100% {
+        background-color: rgba(0, 0, 0, 25%);
+        backdrop-filter: blur(4px);
+    }
+}
+
+.settings-dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--border-color);
+    border-radius: 0.4rem;
+    background-color: var(--primary-color);
+    color: var(--main-text-color);
+    padding: 1.5rem;
+    width: 350px;
+}
+
+.settings-dialog-box>.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-dialog-box>.container>.dialog-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 0px solid var(--border-color);
+    border-bottom-width: 1px;
+    padding: 0rem 0.5rem;
+    padding-bottom: 1rem;
+}
+
+.settings-dialog-box>.container>.dialog-header>.close-button>.icon {
+    fill: var(--main-text-color);
+    height: 1.8rem;
+}
+
+.settings-dialog-box>.container>.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0.5rem;
+    padding-bottom: 0rem;
+}
+
+.settings-dialog-box>.container>.content>.dark-mode-switch-label {
+    font-weight: 500;
+    font-size: 1.1rem;
+    flex: 1;
+}
+
+.settings-dialog-box>.container>.content>.dark-mode-switch-checkbox {
+    width: 1.8rem;
+    height: 1.2rem;
+    accent-color: var(--accent-color);
+}
+
+.profile-dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--border-color);
+    border-radius: 0.4rem;
+    background-color: var(--primary-color);
+    color: var(--main-text-color);
+    padding: 1.5rem;
+    width: 350px;
+}
+
+.profile-dialog-box>.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profile-dialog-box>.container>.dialog-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 0px solid var(--border-color);
+    border-bottom-width: 1px;
+    padding: 0.5rem;
+    padding-top: 0;
+    padding-bottom: 1rem;
+}
+
+.profile-dialog-box>.container>.dialog-header>.close-button>.icon {
+    fill: var(--main-text-color);
+    height: 1.8rem;
+}
+
+.profile-dialog-box>.container>.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.profile-dialog-box>.container>.content>.profile-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.profile-dialog-box>.container>.content>.profile-info>.user-name {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.profile-dialog-box>.container>.content>.profile-info>.profile-picture {
+    height: 2.6rem;
+    border: 2px solid var(--border-color);
+    border-radius: 0.4rem;
+}
+
+.profile-dialog-box>.container>.content>.button-group {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+.profile-dialog-box>.container>.content>.button-group>a {
+    flex: 1;
+}
+
+.linkedin-button {
+    background-color: #0a66c2;
+    padding: 1rem 1.5rem;
+    color: var(--white);
+    text-align: center;
+    font-weight: 550;
+    font-size: 1rem;
+    border-radius: 0.2rem;
+    user-select: none;
+}
+
+.github-button {
+    background-color: #24292E;
+    padding: 1rem 1.5rem;
+    color: var(--white);
+    text-align: center;
+    font-weight: 550;
+    font-size: 1rem;
+    border-radius: 0.2rem;
+    user-select: none;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 1rem;
+}
+
+.message {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 550;
+    background-color: var(--primary-color);
+    width: fit-content;
+    align-self: center;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    border: 2px solid var(--border-color);
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.message-player-wins {
+    background-color: var(--success-color);
+    color: var(--white);
+}
+
+.message-game-draw {
+    background-color: var(--draw-color);
+    color: var(--white);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 1rem;
+    justify-content: center;
+    width: fit-content;
+    margin-top: 1rem;
+    border: 2px solid var(--border-color);
+    background-color: var(--primary-color);
+    padding: 1rem;
+    border-radius: 0.8rem;
+}
+
+@media screen and (max-width: 600px) {
+    .game-board {
+        grid-template-columns: repeat(3, 88px);
+        grid-template-rows: repeat(3, 88px);
+    }
+}
+
+.cell {
+    background-color: var(--primary-color-lighter);
+    border: 2px solid var(--border-color);
+    border-radius: 0.4rem;
+    text-align: center;
+    align-content: center;
+    font-size: 4rem;
+    font-weight: 400;
+    user-select: none;
+    color: var(--main-text-color);
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.cell-winning-highlight {
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.game-control-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.edit-player-name-button {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    border: 2px solid var(--accent-color);
+    font-weight: 550;
+    text-align: center;
+    transition: color 0.3s ease, background-color 0.2s ease;
+    user-select: none;
+}
+
+.edit-player-name-button:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+.restart-game-button {
+    background-color: var(--alert-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    border: 2px solid var(--border-color);
+    font-weight: 550;
+    text-align: center;
+    user-select: none;
+}
+
+.edit-player-name-dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--border-color);
+    border-radius: 0.4rem;
+    background-color: var(--primary-color);
+    color: var(--main-text-color);
+    padding: 1.5rem;
+    width: 350px;
+}
+
+.edit-player-name-dialog-box>.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.edit-player-name-dialog-box>.container>.dialog-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 0px solid var(--border-color);
+    border-bottom-width: 1px;
+    padding: 0.5rem;
+    padding-top: 0;
+    padding-bottom: 1rem;
+}
+
+.edit-player-name-dialog-box>.container>.dialog-header>.close-button>.icon {
+    fill: var(--main-text-color);
+    height: 1.8rem;
+}
+
+.edit-player-name-dialog-box>.container>.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.edit-player-name-form {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.edit-player-name-form>.form-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.edit-player-name-form>.form-item>.player-name-label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.edit-player-name-form>.form-item>.player-name-input {
+    background-color: var(--primary-color-lighter);
+    border: 2px solid var(--border-color);
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--main-text-color);
+    padding: 0.5rem;
+}
+
+.edit-player-name-form>.form-item>.player-name-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.edit-player-name-form>.button-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.submit-button {
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    border: 2px solid var(--border-color);
+    font-weight: 550;
+    font-size: 1rem;
+    text-align: center;
+    user-select: none;
+    flex: 1;
+}
+
+.reset-button {
+    background-color: var(--alert-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    border: 2px solid var(--border-color);
+    font-weight: 550;
+    text-align: center;
+    font-size: 1rem;
+    user-select: none;
+    flex: 1;
+}
