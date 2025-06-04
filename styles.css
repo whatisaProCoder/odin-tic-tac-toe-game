@@ -79,13 +79,6 @@ body {
     color: var(--main-text-color);
     display: flex;
     flex-direction: column;
-    height: 90vh;
-}
-
-@media screen and (max-width: 600px) {
-    body {
-        height: 80vh;
-    }
 }
 
 .header {
@@ -353,6 +346,7 @@ dialog:open::backdrop {
     align-items: center;
     flex: 1;
     gap: 1rem;
+    margin-top: 2rem;
 }
 
 .message {
