@@ -339,7 +339,7 @@ dialog:open::backdrop {
     user-select: none;
 }
 
-.content {
+.main-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
