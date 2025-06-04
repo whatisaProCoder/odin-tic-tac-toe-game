@@ -79,7 +79,7 @@ body {
     color: var(--main-text-color);
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    height: 80vh;
 }
 
 .header {
